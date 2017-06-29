@@ -12,6 +12,14 @@
         android:id="@+id/edittext_dialog_addmoney"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="9.99"/>
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <!--<EditText-->
+        <!--android:id="@+id/edittext_dialog_addmoney"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="9.99"/>-->
 
 </LinearLayout>
