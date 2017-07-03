@@ -8,4 +8,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ButtonTheme">
+        <!--<item name="android:background">#0000ff</item>-->
+    </style>
+
+    <style name="InvisibleButton">
+        <item name="android:background">#00000000</item>
+    </style>
+
+    <style name="BlurredForeFront">
+        <item name="android:background">@color/lightGreen</item>
+        <!--<item name="android:"-->
+    </style>
+
 </resources>

@@ -1,6 +1,7 @@
 package com.example.lucas.moneymanager.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,18 +21,14 @@ import java.util.zip.Inflater;
 
 public class HomeActivity extends AppCompatActivity {
 
-    public DbHelper db;
+    private DbHelper db;
     private float amount;
+    private int goal = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-//        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_homeScreen_toolbar);
-//        myToolbar.setBackgroundColor(Color.BLUE);
-//        myToolbar.setTitleTextColor(Color.WHITE);
-//        setSupportActionBar(myToolbar);
 
         db = new DbHelper(this);
         amount = db.getAmount();
@@ -44,26 +41,30 @@ public class HomeActivity extends AppCompatActivity {
      */
     public void changeAmount(View buttonView) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        final View view = this.getLayoutInflater().inflate(R.layout.dialog_money, null);
-        dialog.setMessage(R.string.dialog_addMoney)
-                .setView(view)
+        final View view = this.getLayoutInflater().inflate(R.layout.dialong_changemoney, null);
+        dialog.setView(view)
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        EditText editText = (EditText) view.findViewById(R.id.edittext_dialog_addmoney);
-                        String userAmount = editText.getText().toString();
+                        EditText editTextAmount = (EditText) view.findViewById(R.id.edittext_dialog_addmoney);
+                        EditText editTextItem = (EditText) view.findViewById(R.id.edittext_dialog_item);
+                        String userItem = editTextItem.getText().toString();
+                        String userAmount = editTextAmount.getText().toString();
                         if (!userAmount.isEmpty()) {
-                            changeAmount(Float.valueOf(userAmount));
+                            UpdateAmount(Float.valueOf(userAmount), userItem);
+
                         }
                     }
                 })
                 .setNegativeButton("Remove", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        EditText editText = (EditText) view.findViewById(R.id.edittext_dialog_addmoney);
-                        String userAmount = editText.getText().toString();
+                        EditText editTextAmount = (EditText) view.findViewById(R.id.edittext_dialog_addmoney);
+                        EditText editTextItem = (EditText) view.findViewById(R.id.edittext_dialog_item);
+                        String userItem = editTextItem.getText().toString();
+                        String userAmount = editTextAmount.getText().toString();
                         if (!userAmount.isEmpty()) {
-                            changeAmount(Float.valueOf(userAmount) * -1.0f);
+                            UpdateAmount(Float.valueOf(userAmount) * -1.0f, userItem);
                         }
                     }
                 });
@@ -71,66 +72,44 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     /**
-     * Create an AlertDialog that allows the user to remove the amount of money from the spent amount
+     * OnClick method that starts the Purchase Log activity
+     * @param buttonView
      */
-    public void removeSpentMoney() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        final View view = this.getLayoutInflater().inflate(R.layout.dialog_money, null);
-        dialog.setMessage(R.string.dialog_removemoney)
-                .setView(view)
-                .setPositiveButton("Remove", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        EditText editText = (EditText) view.findViewById(R.id.edittext_dialog_addmoney);
-                        String userAmount = editText.getText().toString();
-                        if (!userAmount.isEmpty()) {
-                            changeAmount(Float.valueOf(userAmount) * -1.0f);
-                        }
-                    }
-                })
-                .setNegativeButton("Cancel", null);
-        dialog.create().show();
+    public void openLog(View buttonView) {
+        Intent intent = new Intent(this, PurchaseLog.class);
+        startActivity(intent);
     }
-//
-//    /**
-//     * Inflates our menu items to our toolbar
-//     * @param menu the menu resource we are using
-//     * @return //
-//     */
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.homescreen_toolbar, menu);
-//        return true;
-//    }
-//
-//    /**
-//     * Allows event handling for user clicks on our toolbar
-//     * @param item what is clicked
-//     * @return //
-//     */
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.toolbar_plus:
-////                addSpentMoney();
-//                return true;
-//            case R.id.toolbar_minus:
-//                removeSpentMoney();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
 
-    public void changeAmount(float value) {
+    /**
+     * Changes the current amount displayed to the user
+     * @param value
+     */
+    public void UpdateAmount(float value, String item) {
+        if (item.equals("")) {
+            item = getResources().getString(R.string.no_description);
+        }
         amount += value;
         setTextviewAmount();
         db.deleteAmount();
-        db.addAmount(amount);
+        db.updateAmount(amount);
+        db.updateItems(value, item);
     }
 
+    /**
+     * Sets the amount spent that is displayed on the screen
+     */
     public void setTextviewAmount() {
         TextView textView = (TextView) findViewById(R.id.textview_homeScreen_moneySpent);
-        textView.setText(String.format("%.02f", amount));
+        textView.setText(String.format("%.02f / %d", amount, goal));
+    }
+
+    /**
+     * Deletes all of our stored information in out db
+     * @param buttonView
+     */
+    public void resetAmounts(View buttonView) {
+        db.deleteAll();
+        amount = 0;
+        setTextviewAmount();
     }
 }

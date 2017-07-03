@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.PurchaseLog"
+            android:parentActivityName=".activity.HomeActivity"></activity>
     </application>
 
 </manifest>
