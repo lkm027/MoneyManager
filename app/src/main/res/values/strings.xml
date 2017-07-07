@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MoneyManager</string>
+    <string name="app_name">Budget Tracker</string>
     <string name="toolbar_addmoney">Add Money</string>
     <string name="toolbar_removeMoney">Remove Money</string>
     <string name="dialog_addMoney">Enter the amount spent</string>
@@ -7,7 +7,7 @@
     <string name="button_changeAmount">Change Amount</string>
     <string name="textview_spendtAmountTitle">Spent Money:</string>
     <string name="button_viewLog">View Spending Log</string>
-    <string name="title">Money Tracker</string>
+    <string name="title">Budget Tracker</string>
     <string name="textview_ItemofPurchase">What are you buying:</string>
     <string name="amount">Amount:</string>
     <string name="purchase_log">Purchase Log:</string>

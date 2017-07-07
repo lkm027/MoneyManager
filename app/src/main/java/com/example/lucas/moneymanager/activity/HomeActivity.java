@@ -17,7 +17,9 @@ import android.widget.TextView;
 import com.example.lucas.moneymanager.R;
 import com.example.lucas.moneymanager.database.DbHelper;
 
-import java.util.zip.Inflater;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -52,7 +54,13 @@ public class HomeActivity extends AppCompatActivity {
                         String userAmount = editTextAmount.getText().toString();
                         if (!userAmount.isEmpty()) {
                             UpdateAmount(Float.valueOf(userAmount), userItem);
+                            //printing out the time to the console
+                            Calendar cal = Calendar.getInstance();
+                            cal.add(Calendar.DATE, 0);
+                            SimpleDateFormat format1 = new SimpleDateFormat("MM/dd");
 
+                            String formatted = format1.format(cal.getTime());
+                            Log.d("TAG", formatted);
                         }
                     }
                 })
@@ -111,5 +119,14 @@ public class HomeActivity extends AppCompatActivity {
         db.deleteAll();
         amount = 0;
         setTextviewAmount();
+    }
+
+    /**
+     * Opens the settings page
+     * @param buttonView
+     */
+    public void openSettings(View buttonView) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 }
