@@ -1,17 +1,26 @@
 <resources>
     <string name="app_name">Budget Tracker</string>
-    <string name="toolbar_addmoney">Add Money</string>
-    <string name="toolbar_removeMoney">Remove Money</string>
+    <string name="button_addmoney">Add Money</string>
+    <string name="button_removeMoney">Remove Money</string>
     <string name="dialog_addMoney">Enter the amount spent</string>
     <string name="dialog_removemoney">Enter the amount you want to remove</string>
     <string name="button_changeAmount">Change Amount</string>
-    <string name="textview_spendtAmountTitle">Spent Money:</string>
+    <string name="textview_spendtAmountTitle">Money Available:</string>
     <string name="button_viewLog">View Spending Log</string>
     <string name="title">Budget Tracker</string>
-    <string name="textview_ItemofPurchase">What are you buying:</string>
+    <string name="textview_addingMoney">What are you adding?</string>
+    <string name="textview_itemRemoval">What are you purchasing?</string>
     <string name="amount">Amount:</string>
     <string name="purchase_log">Purchase Log:</string>
     <string name="button_reset">Reset</string>
     <string name="no_description">No Description</string>
+    <string name="budget_amount">What is your budget?</string>
+
+    <string name="budget">Budget</string>
+
+    <string name="button_addDate">Add...</string>
+
+    <string name="about_description">The purpose of this app is to allow individuals to track the amount of
+        money they have spent over a period of time.  </string>
 
 </resources>

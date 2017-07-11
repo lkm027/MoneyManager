@@ -14,6 +14,7 @@ import com.example.lucas.moneymanager.classes.Item;
 import com.example.lucas.moneymanager.database.DbHelper;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PurchaseLog extends AppCompatActivity {
@@ -35,6 +36,7 @@ public class PurchaseLog extends AppCompatActivity {
         if (db.getAllGoals().size() != 0) {
             list = db.getAllGoals();
         }
+        Collections.reverse(list);
         mAdapter = new ItemAdapter(list, this);
         listView.setAdapter(mAdapter);
 

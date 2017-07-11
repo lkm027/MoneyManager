@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="@string/toolbar_removeMoney"
+        android:title="@string/button_removeMoney"
         android:id="@+id/toolbar_minus"
         android:icon="@drawable/ic_minus"
         app:showAsAction="always"
         />
 
     <item
-        android:title="@string/toolbar_addmoney"
+        android:title="@string/button_addmoney"
         android:id="@+id/toolbar_plus"
         android:icon="@drawable/ic_plus"
         app:showAsAction="always"
