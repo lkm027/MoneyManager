@@ -64,16 +64,16 @@ public class HomeActivity extends AppCompatActivity {
                         EditText editTextItem = (EditText) view.findViewById(R.id.edittext_dialog_item);
                         String userItem = editTextItem.getText().toString();
                         String userAmount = editTextAmount.getText().toString();
-                        if (!userAmount.isEmpty()) {
-                            UpdateAmount(Float.valueOf(userAmount), userItem);
-                            //printing out the time to the console
-                            Calendar cal = Calendar.getInstance();
-                            cal.add(Calendar.DATE, 0);
-                            SimpleDateFormat format1 = new SimpleDateFormat("MM/dd");
-
-                            String formatted = format1.format(cal.getTime());
-                            Log.d("TAG", formatted);
-                        }
+//                        if (!userAmount.isEmpty()) {
+//                            UpdateAmount(Float.valueOf(userAmount), userItem);
+//                            //printing out the time to the console
+//                            Calendar cal = Calendar.getInstance();
+//                            cal.add(Calendar.DATE, 0);
+//                            SimpleDateFormat format1 = new SimpleDateFormat("MM/dd");
+//
+//                            String formatted = format1.format(cal.getTime());
+//                            Log.d("TAG", formatted);
+//                        }
                     }
                 });
         dialog.setNegativeButton("Cancel", null);

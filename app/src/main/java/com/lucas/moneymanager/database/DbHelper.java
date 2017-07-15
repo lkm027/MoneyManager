@@ -9,6 +9,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,7 +126,7 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "select * from " + AMOUNT_TABLE;
         Cursor cursor = db.rawQuery(query, null);
-        float amount = cursor.moveToFirst() ? cursor.getInt(0) : 0;
+        float amount = cursor.moveToFirst() ? cursor.getFloat(0) : 0;
         db.close();
         return amount;
     }
