@@ -1,4 +1,4 @@
-package com.example.lucas.moneymanager.database;
+package com.lucas.moneymanager.database;
 
 /**
  * Created by Lucas on 6/27/2017.
@@ -13,18 +13,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
-import com.example.lucas.moneymanager.classes.Item;
-
-import java.sql.SQLData;
-import java.util.ArrayList;
-import java.util.List;
+import com.lucas.moneymanager.classes.Item;
 
 /**
  * Created by Lucas on 5/29/2017.

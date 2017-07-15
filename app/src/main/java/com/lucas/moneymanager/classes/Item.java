@@ -1,6 +1,4 @@
-package com.example.lucas.moneymanager.classes;
-
-import com.example.lucas.moneymanager.R;
+package com.lucas.moneymanager.classes;
 
 /**
  * Created by Lucas on 6/30/2017.

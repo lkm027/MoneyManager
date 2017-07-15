@@ -1,4 +1,4 @@
-package com.example.lucas.moneymanager.adapter;
+package com.lucas.moneymanager.adapter;
 
 /**
  * Created by Lucas on 6/30/2017.
@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.lucas.moneymanager.R;
-import com.example.lucas.moneymanager.classes.Item;
+import com.lucas.moneymanager.R;
+import com.lucas.moneymanager.classes.Item;
 
 import java.util.List;
 
@@ -46,6 +46,15 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 
 
         return convertView;
+    }
+
+    public void removeAll() {
+        mList.removeAll(mList);
+        notifyDataSetChanged();
+    }
+
+    public void addToList(Item item) {
+        mList.add(item);
     }
 
 //    /**

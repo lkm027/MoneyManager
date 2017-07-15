@@ -1,4 +1,4 @@
-package com.example.lucas.moneymanager;
+package com.lucas.moneymanager;
 
 import org.junit.Test;
 

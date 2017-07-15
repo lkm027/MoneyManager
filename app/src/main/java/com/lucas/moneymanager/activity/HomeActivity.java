@@ -1,23 +1,19 @@
-package com.example.lucas.moneymanager.activity;
+package com.lucas.moneymanager.activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.lucas.moneymanager.R;
-import com.example.lucas.moneymanager.database.DbHelper;
+import com.lucas.moneymanager.R;
+import com.lucas.moneymanager.database.DbHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,8 +23,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private DbHelper db;
     private float amount;
-    private int goal = 100;
-//    private boolean budgetisSet;
+    private float budget;
+    private boolean budgetisSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +35,17 @@ public class HomeActivity extends AppCompatActivity {
         amount = db.getAmount();
 
 
-//        //shared Preferences
-//        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-//        budgetisSet = sharedPref.getBoolean(getString(R.string.budget), false);
-//
-//        if (!budgetisSet) {
-//            budgetisSet = true;
-//            SharedPreferences.Editor editor = sharedPref.edit();
-//            editor.putBoolean(getString(R.string.budget), true);
-//            editor.commit();
-//            setBudget();
-//        }
+        //shared Preferences
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        budgetisSet = sharedPref.getBoolean(getString(R.string.budget), false);
+
+        if (!budgetisSet) {
+            budgetisSet = true;
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean(getString(R.string.budget), true);
+            editor.commit();
+            setBudget();
+        }
 
         setTextviewAmount();
     }
@@ -128,11 +124,18 @@ public class HomeActivity extends AppCompatActivity {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         final View view = this.getLayoutInflater().inflate(R.layout.dialog_change_budget, null);
         dialog.setView(view)
-                .setPositiveButton("Add", null)
-                .setNegativeButton("Cancel", null);
+                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        EditText editTextAmount = (EditText) view.findViewById(R.id.edittext_dialog_budgetAMount);
+                        String budgetAmount = editTextAmount.getText().toString();
+                        if (budgetAmount.isEmpty()) {
+                            budgetAmount = "0";
+                        }
+                        UpdateAmount(Float.valueOf(budgetAmount), getResources().getString(R.string.set_budget));
+                    }
+                });
         dialog.create().show();
-
-
     }
 
     /**
@@ -185,5 +188,12 @@ public class HomeActivity extends AppCompatActivity {
     public void openSettings(View buttonView) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        amount = db.getAmount();
+        setTextviewAmount();
     }
 }

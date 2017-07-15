@@ -1,9 +1,9 @@
-package com.example.lucas.moneymanager.activity;
+package com.lucas.moneymanager.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.lucas.moneymanager.R;
+import com.lucas.moneymanager.R;
 
 public class SettingsActivity extends AppCompatActivity {
 

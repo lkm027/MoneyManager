@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lucas.moneymanager.activity.SettingsActivity"
+    tools:context="com.lucas.moneymanager.activity.SettingsActivity"
     android:background="@color/green">
 
     <TextView

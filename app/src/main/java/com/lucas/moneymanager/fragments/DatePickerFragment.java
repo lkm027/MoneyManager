@@ -1,4 +1,4 @@
-package com.example.lucas.moneymanager.fragments;
+package com.lucas.moneymanager.fragments;
 
 /**
  * Created by Lucas on 7/11/2017.
@@ -9,7 +9,6 @@ import android.app.DialogFragment;
 import java.util.Calendar;
 import android.os.Bundle;
 import android.widget.DatePicker;
-import android.widget.TextView;
 
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 

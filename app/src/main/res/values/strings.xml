@@ -8,16 +8,19 @@
     <string name="textview_spendtAmountTitle">Money Available:</string>
     <string name="button_viewLog">View Spending Log</string>
     <string name="title">Budget Tracker</string>
-    <string name="textview_addingMoney">What are you adding?</string>
+    <string name="textview_addingMoney">Reason:</string>
     <string name="textview_itemRemoval">What are you purchasing?</string>
     <string name="amount">Amount:</string>
     <string name="purchase_log">Purchase Log:</string>
     <string name="button_reset">Reset</string>
     <string name="no_description">No Description</string>
-    <string name="budget_amount">What is your budget?</string>
+    <string name="budget_amount">What is your new budget?</string>
+
+    <string name="dialog_hint">Eg. Paycheck, Groceries</string>
 
     <string name="budget">Budget</string>
     <string name="reset_budget">Reset Budget</string>
+    <string name="set_budget">Set budget</string>
 
     <string name="button_addDate">Add...</string>
 
