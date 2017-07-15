@@ -17,6 +17,7 @@
     <string name="budget_amount">What is your budget?</string>
 
     <string name="budget">Budget</string>
+    <string name="reset_budget">Reset Budget</string>
 
     <string name="button_addDate">Add...</string>
 

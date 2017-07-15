@@ -121,6 +121,9 @@ public class HomeActivity extends AppCompatActivity {
         dialog.create().show();
     }
 
+    /**
+     * Updates the user budget preferences
+     */
     private void setBudget() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         final View view = this.getLayoutInflater().inflate(R.layout.dialog_change_budget, null);
