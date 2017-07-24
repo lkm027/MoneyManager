@@ -8,10 +8,20 @@ public class Item {
 
     private String name;
     private float amount;
+    private String date;
 
-    public Item(String name, float amount) {
+    public Item(String name, float amount, String date) {
         this.name = name;
         this.amount = amount;
+        this.date = date;
+    }
+
+    public Item(String name, float amount) {
+        this(name, amount, "--/--");
+    }
+
+    public Item(float amount) {
+        this("No Description", amount, "--/--");
     }
 
     /**

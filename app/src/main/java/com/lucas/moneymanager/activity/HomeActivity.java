@@ -64,31 +64,14 @@ public class HomeActivity extends AppCompatActivity {
                         EditText editTextItem = (EditText) view.findViewById(R.id.edittext_dialog_item);
                         String userItem = editTextItem.getText().toString();
                         String userAmount = editTextAmount.getText().toString();
-//                        if (!userAmount.isEmpty()) {
-//                            UpdateAmount(Float.valueOf(userAmount), userItem);
-//                            //printing out the time to the console
-//                            Calendar cal = Calendar.getInstance();
-//                            cal.add(Calendar.DATE, 0);
-//                            SimpleDateFormat format1 = new SimpleDateFormat("MM/dd");
-//
-//                            String formatted = format1.format(cal.getTime());
-//                            Log.d("TAG", formatted);
-//                        }
+                        if (!userAmount.isEmpty()) {
+                            UpdateAmount(Float.valueOf(userAmount), userItem);
+                            //printing out the time to the console
+                            String date = getDate();
+                        }
                     }
                 });
         dialog.setNegativeButton("Cancel", null);
-//                .setNegativeButton("Remove", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        EditText editTextAmount = (EditText) view.findViewById(R.id.edittext_dialog_addmoney);
-//                        EditText editTextItem = (EditText) view.findViewById(R.id.edittext_dialog_item);
-//                        String userItem = editTextItem.getText().toString();
-//                        String userAmount = editTextAmount.getText().toString();
-//                        if (!userAmount.isEmpty()) {
-//                            UpdateAmount(Float.valueOf(userAmount) * -1.0f, userItem);
-//                        }
-//                    }
-//                });
         dialog.create().show();
     }
 
@@ -195,5 +178,12 @@ public class HomeActivity extends AppCompatActivity {
         super.onResume();
         amount = db.getAmount();
         setTextviewAmount();
+    }
+
+    private String getDate() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 0);
+        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd");
+        return format1.format(cal.getTime());
     }
 }
