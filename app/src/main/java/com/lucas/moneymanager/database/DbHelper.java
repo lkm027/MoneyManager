@@ -72,10 +72,6 @@ public class DbHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // If you need to add a column
-//        if (newVersion > oldVersion) {
-//            db.execSQL("ALTER TABLE GoalsTable ADD COLUMN new_column INTEGER DEFAULT 0");
-//        }
 //        db.execSQL("DROP TABLE IF EXISTS " + AMOUNT_TABLE);
 //        db.execSQL("DROP TABLE IF EXISTS " + ITEM_TABLE);
 //        onCreate(db);
