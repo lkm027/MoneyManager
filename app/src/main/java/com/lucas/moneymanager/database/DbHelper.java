@@ -24,10 +24,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
     //Database
     public static final String DB_NAME = "Database";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
 
     //Tables
-    public static final String GOALS_TABLE = "GoalsTable";
     public static final String AMOUNT_TABLE = "AmountTable";
     private static final String ITEM_TABLE = "ItemTable";
 
@@ -37,10 +36,12 @@ public class DbHelper extends SQLiteOpenHelper {
     //Columns for Item Table
     public static final String KEY_ITEM = "Item";
     public static final String KEY_ITEMAMOUNT = "ItemAmount";
+    public static final String KEY_DATE = "Date";
 
-    //columns for goals table
-    public static final String KEY_GOALNAME = "GoalName";
-    public static final String KEY_TYPE = "Type";
+
+    //Alter statements
+    private static final String DATABASE_ALTER_ADD_DATES = "ALTER TABLE "
+            + ITEM_TABLE + " ADD COLUMN " + KEY_DATE + " TEXT;";
 
     public DbHelper(Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
@@ -52,14 +53,12 @@ public class DbHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        String CREATE_GOAL_TABLE = "CREATE TABLE " + GOALS_TABLE + "(" + KEY_GOALNAME
-//                + " TEXT," + KEY_TYPE + " TEXT)";
 
         String CREATE_AMOUNT_TABLE = "CREATE TABLE " + AMOUNT_TABLE + "(" + KEY_AMOUNT +
                 " REAL)";
 
         String CREATE_ITEM_TABLE = "CREATE TABLE " + ITEM_TABLE + "(" + KEY_ITEM + " TEXT,"
-                + KEY_ITEMAMOUNT + " REAL)";
+                + KEY_ITEMAMOUNT + " REAL," + KEY_DATE + " TEXT)";
 
         db.execSQL(CREATE_AMOUNT_TABLE);
         db.execSQL(CREATE_ITEM_TABLE);
@@ -77,9 +76,13 @@ public class DbHelper extends SQLiteOpenHelper {
 //        if (newVersion > oldVersion) {
 //            db.execSQL("ALTER TABLE GoalsTable ADD COLUMN new_column INTEGER DEFAULT 0");
 //        }
-        db.execSQL("DROP TABLE IF EXISTS " + AMOUNT_TABLE);
-        db.execSQL("DROP TABLE IF EXISTS " + ITEM_TABLE);
-        onCreate(db);
+//        db.execSQL("DROP TABLE IF EXISTS " + AMOUNT_TABLE);
+//        db.execSQL("DROP TABLE IF EXISTS " + ITEM_TABLE);
+//        onCreate(db);
+
+        if (oldVersion < 3) {
+            db.execSQL(DATABASE_ALTER_ADD_DATES);
+        }
     }
 
 
@@ -100,11 +103,12 @@ public class DbHelper extends SQLiteOpenHelper {
      * @param amount
      * @param item
      */
-    public void updateItems(float amount, String item) {
+    public void updateItems(float amount, String item, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_ITEM, item);
         values. put(KEY_ITEMAMOUNT, amount);
+        values.put(KEY_DATE, date);
         db.insert(ITEM_TABLE, null, values);
         db.close();
     }
@@ -147,7 +151,7 @@ public class DbHelper extends SQLiteOpenHelper {
         //Looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                list.add(new Item(cursor.getString(0), cursor.getFloat(1)));
+                list.add(new Item(cursor.getString(0), cursor.getFloat(1), cursor.getString(2)));
             } while (cursor.moveToNext());
         }
         cursor.close();

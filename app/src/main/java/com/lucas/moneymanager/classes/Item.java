@@ -51,4 +51,8 @@ public class Item {
         return String.format("$%.02f", amount);
     }
 
+    public String getDate() {
+        return date;
+    }
+
 }

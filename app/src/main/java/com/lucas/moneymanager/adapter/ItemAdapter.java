@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.lucas.moneymanager.R;
 import com.lucas.moneymanager.classes.Item;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 
@@ -39,10 +41,13 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         //item position
         Item item = getItem(position);
 
+        //grab our textviews from our convertview and populate them with our data
+        TextView itemDate = (TextView) convertView.findViewById(R.id.textView_linearlayout_logDate);
         TextView itemDescription = (TextView) convertView.findViewById(R.id.textView_linearlayout_logItem);
         TextView itemAmount = (TextView) convertView.findViewById(R.id.textView_linearlayout_logAmount);
         itemDescription.setText(item.getItemDesc());
         itemAmount.setText(item.getDollarAmount());
+        itemDate.setText(item.getDate());
 
 
         return convertView;

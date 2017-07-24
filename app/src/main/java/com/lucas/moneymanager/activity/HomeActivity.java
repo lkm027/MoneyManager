@@ -66,8 +66,6 @@ public class HomeActivity extends AppCompatActivity {
                         String userAmount = editTextAmount.getText().toString();
                         if (!userAmount.isEmpty()) {
                             UpdateAmount(Float.valueOf(userAmount), userItem);
-                            //printing out the time to the console
-                            String date = getDate();
                         }
                     }
                 });
@@ -138,11 +136,12 @@ public class HomeActivity extends AppCompatActivity {
         if (item.equals("")) {
             item = getResources().getString(R.string.no_description);
         }
+        String date = getDate();
         amount += value;
         setTextviewAmount();
         db.deleteAmount();
         db.updateAmount(amount);
-        db.updateItems(value, item);
+        db.updateItems(value, item, date);
     }
 
     /**

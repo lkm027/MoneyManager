@@ -15,7 +15,9 @@ import com.lucas.moneymanager.adapter.ItemAdapter;
 import com.lucas.moneymanager.classes.Item;
 import com.lucas.moneymanager.database.DbHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class PurchaseLog extends AppCompatActivity {
@@ -86,10 +88,11 @@ public class PurchaseLog extends AppCompatActivity {
 
                         amount = Float.valueOf(budgetAmount);
 
+                        String date = getDate();
                         db.deleteAll();
                         mAdapter.removeAll();
                         db.updateAmount(amount);
-                        db.updateItems(amount, getResources().getString(R.string.set_budget));
+                        db.updateItems(amount, getResources().getString(R.string.set_budget), date);
                         mAdapter.add(new Item(getResources().getString(R.string.set_budget), amount));
 
                         setMoneyAmount();
@@ -102,6 +105,13 @@ public class PurchaseLog extends AppCompatActivity {
     private void setMoneyAmount() {
         TextView moneyAmount = (TextView) findViewById(R.id.textview_purchaselog_availableMoney);
         moneyAmount.setText(String.format("%.02f", amount));
+    }
+
+    private String getDate() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 0);
+        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd");
+        return format1.format(cal.getTime());
     }
 
 }

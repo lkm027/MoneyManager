@@ -11,13 +11,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="16dp"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.025" />
+        app:layout_constraintLeft_toRightOf="@+id/textView_linearlayout_logDate"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.016" />
 
     <TextView
         android:id="@+id/textView_linearlayout_logAmount"
@@ -30,4 +30,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView_linearlayout_logItem"
         app:layout_constraintHorizontal_bias="0.96" />
+
+    <TextView
+        android:id="@+id/textView_linearlayout_logDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 </android.support.constraint.ConstraintLayout>
